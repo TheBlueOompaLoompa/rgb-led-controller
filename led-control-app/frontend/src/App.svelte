@@ -1,4 +1,6 @@
 <script>
+	import { fly } from 'svelte/transition';
+	
 	import { updateSetting, getSettings } from './requester';
 	import { generateGradient } from './patterns';
 	import { int2Rgb, rgb2hex } from './rgb';
@@ -56,17 +58,19 @@
 </select>
 
 {#if settings.mode == 0}
-	<label for="color">Color: </label>
+	<label for="color" transition:fly="{{ y: 100, duration: 500 }}">Color: </label>
 	<input type="color" name="color" id="color" bind:value={color} on:change={() => { 
 		settings.color = [int2Rgb(parseInt(color.replace('#', ''), 16))];
 		console.log(color);
 		updateSetting("color", settings.color); 
-	} }>
+	} } transition:fly="{{ y: 100, duration: 500 }}">
 {:else if settings.mode >= 2 && settings.mode <= 4}
 	<br>
-	<label for="gradient">Pattern: </label>
+	<label for="gradient" transition:fly="{{ y: 100, duration: 500 }}">Pattern: </label>
 	<!-- svelte-ignore a11y-no-onchange -->
-	<select name="gradient" id="gradient" bind:value={settings.gradient} on:change={ () => {settings.color = generateGradient(settings.gradient); updateSetting("color", settings.color); updateSetting("gradient", settings.gradient)} }>
+	<select name="gradient" id="gradient" bind:value={settings.gradient} on:change={ () => {settings.color = generateGradient(settings.gradient); updateSetting("color", settings.color); updateSetting("gradient", settings.gradient)} } 
+		transition:fly="{{ y: 100, duration: 500 }}">
+
 		<option value=0>Christmas &#x1F384;</option>
 		<option value=1>Thanksgiving &#x1F468;&#x200D;&#x1F469;&#x200D;&#x1F467;&#x200D;&#x1F467;</option>
 		<option value=2>Easter &#x1F95A;</option>
@@ -76,8 +80,8 @@
 {/if}
 
 {#if settings.mode >= 1 && settings.mode <= 3}
-	<label for="loops">Loops &#x1F504;: </label>
-	<input type="number" min=1 name="loops" bind:value={ settings.loops } on:change={ () => { updateSetting("loops", parseInt(settings.loops, 10)); } }>
+	<label for="loops" transition:fly="{{ y: 100, duration: 500 }}">Loops &#x1F504;: </label>
+	<input type="number" min=1 name="loops" bind:value={ settings.loops } on:change={ () => { updateSetting("loops", parseInt(settings.loops, 10)); } } transition:fly="{{ y: 100, duration: 500 }}">
 {/if}
 
 <style>
