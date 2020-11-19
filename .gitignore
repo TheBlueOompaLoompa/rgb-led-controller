@@ -1,3 +1,4 @@
 /node_modules/
 /led-control-app/node_modules
 /led-control-app/frontend/node_modules
+/led-control-app/frontend/package-lock.json
