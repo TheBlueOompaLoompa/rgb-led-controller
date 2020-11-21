@@ -76,6 +76,7 @@
 		<option value=2>Easter &#x1F95A;</option>
 		<option value=3>Halloween &#x1F383;</option>
 		<option value=4>Mom's Favorite &#x1F49C;&#x1F499;</option>
+		<option value=5>Xmas2 Elec Boogaloo &#x1F384;</option>
 	</select>
 {/if}
 
