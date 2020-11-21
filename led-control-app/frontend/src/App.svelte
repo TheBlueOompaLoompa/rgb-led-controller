@@ -25,7 +25,7 @@
 </script>
 
 <svelte:head>
-	<title>Poop On You</title>
+	<title>Christmas Lights</title>
 </svelte:head>
 
 <label for="onoff">Lights: </label>
