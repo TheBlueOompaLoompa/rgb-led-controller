@@ -152,12 +152,12 @@ module.exports = {
 			}
 			
 		} else {
-			let gradArray = [...color, color[0]];  //wraparound
+			let colArray = [...color, color[0]];  //wraparound
 
-			let gradient = tinygradient(gradArray);
+			let gradient = tinygradient(colArray);
 
 			for(let i = 0; i < ledCount; i++) {
-				let col = gradient.rgbAt(Math.abs(((i/2 + offset)/ledCount) * loops % 1)).toRgb();
+				let col = colArray.rgbAt(i + offset)/ledCount) * loops % 1)).toRgb();
 				pixelData[i] = led.rgb2Int(col.r, col.g, col.b);
 				
 			}
