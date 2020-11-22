@@ -154,10 +154,10 @@ module.exports = {
 		} else {
 			let colArray = [...color, color[0]];  //wraparound
 
-			let gradient = tinygradient(colArray);
+		//	let gradient = tinygradient(colArray);
 
 			for(let i = 0; i < ledCount; i++) {
-				let col = colArray.rgbAt(i + offset)/ledCount) * loops % 1)).toRgb();
+				let col = colArray.rgbAt(((i + offset)/ledCount) * loops % 1).toRgb();
 				pixelData[i] = led.rgb2Int(col.r, col.g, col.b);
 				
 			}
