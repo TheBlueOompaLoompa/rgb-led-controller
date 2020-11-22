@@ -55,6 +55,8 @@
 	<option value=2>Gradient &#x1F36D;</option>
 	<option value=3>Wave Gradient &#x1F30A;</option>
 	<option value=4>In & Out Fading ↔️</option>
+	<option value=5>Shooting Star ↔️</option>
+	<option value=6>Marque Solid ↔️</option>
 </select>
 
 {#if settings.mode == 0}
