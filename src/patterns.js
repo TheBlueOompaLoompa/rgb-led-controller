@@ -56,15 +56,7 @@ module.exports = {
 			}
 			
 		} else {
-			let gradColor = [...color];
-			let gradEnds = [gradColor[0], gradColor[gradColor.length - 1]];
-
-			color.shift();
-			color.pop();
-
-			let gradMid = [...color];
-
-			let gradArray = [gradEnds[0], ...gradMid, gradEnds[1], gradEnds[0]];
+			let gradArray = [...color, color[0]];
 
 			let gradient = tinygradient(gradArray);
 
@@ -114,6 +106,67 @@ module.exports = {
 		
 		if(offset > 255 * color.length){
 			offset = 0;
+		}
+
+		return {pixelData, offset};
+	},
+	shootingStar: (pixelData, offset, ledCount = 48, color = [{r: 255, g: 255, b: 255}]) => {
+		let tempCol = [...color];
+		for(let i = 0; i < tempCol.length; i++) {
+			color.insert(i+1, {r: 0, g: 0, b: 0});
+			i++;
+		}
+
+		let gradColor = [...color];
+		let gradEnds = [gradColor[0], gradColor[gradColor.length - 1]];
+
+		color.shift();
+		color.pop();
+
+		let gradMid = [...color];
+
+		let gradArray = [gradEnds[0], ...gradMid, gradEnds[1], gradEnds[0]];
+
+		let gradient = tinygradient(gradArray);
+
+		let col = gradient.rgbAt(offset / (255 * color.length) % 1).toRgb();
+
+		for(let i = 0; i < ledCount; i++) {
+			
+			pixelData[i] = led.rgb2Int(col.r, col.g, col.b);
+			
+		}
+		
+		offset += 1;
+		
+		if(offset > 255 * color.length){
+			offset = 0;
+		}
+
+		return {pixelData, offset};
+	},
+	marqueeSolids: (pixelData, offset, ledCount = 48, color = [{r: 255, g: 255, b: 255}], loops = 1) => {
+		if(color.length == 1) {
+			for(let i = 0; i < ledCount; i++) {
+				pixelData[i] = led.rgb2Int(color[0].r, color[0].g, color[0].b);
+			}
+			
+		} else {
+			let gradArray = [...color, color[0]];  //wraparound
+
+			let gradient = tinygradient(gradArray);
+
+			for(let i = 0; i < ledCount; i++) {
+				let col = gradient.rgbAt(Math.abs(((i/2 + offset)/ledCount) * loops % 1)).toRgb();
+				pixelData[i] = led.rgb2Int(col.r, col.g, col.b);
+				
+			}
+			
+			offset += 2 / color.length;
+			
+			if(offset > ledCount){
+				offset = 0;
+			}
 		}
 
 		return {pixelData, offset};
