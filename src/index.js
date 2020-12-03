@@ -54,7 +54,7 @@ var updateLoop = setInterval(function() {
 					return patterns.rainbow(pixelData, offset, led.getLedCount(), server.getSettings().loops), false, 50, thisTime, lastTime;
 				default:
 					//solid
-					return patterns.gradient(pixelData, offset, led.getLedCount(), server.getSettings().on ? server.getSettings().color[0] : {r: 0, g: 0, b: 0}, server.getSettings().loops, false, false, 50, thisTime, lastTime);
+					return patterns.gradient(pixelData, offset, led.getLedCount(), server.getSettings().on ? [...server.getSettings().color[0]] : [{r: 0, g: 0, b: 0}], server.getSettings().loops, false, false, 50, thisTime, lastTime);
 			}
 		});
 	}
