@@ -133,7 +133,6 @@ module.exports = {
 		// Now show all the stars
 		starData = {thisTime: thisTime, color:color, ledCount:ledCount, lightArray:pixelData};
 		starList.forEach(function calcStars(value, index, array){star.processStars(value, index, array, starData);});
-		break;
 
 		return {pixelData, offset};
 	},
