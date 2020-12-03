@@ -17,7 +17,13 @@ led.init({framerate: server.getSettings().speed, ledMapping: led.GRB});
 
 let lastSettings = {};
 
-let updateLoop = setInterval(function() {
+var lastTime = Date.now();
+var thisTime = Date.now();
+var nextStarBirthTime = 0;
+var starList = [{startTime:0, position:100, direction:1, speed:0.3, twinkleTime:1500, color:'#FF0000',},
+				{startTime:0, position:50, direction:-1, speed:0.5, twinkleTime:2000, color:'#00FF00',}];
+
+var updateLoop = setInterval(function() {
 	if(!_.isEqual(server.getSettings(), lastSettings)){
 		Object.assign(lastSettings, server.getSettings());
 
@@ -28,24 +34,33 @@ let updateLoop = setInterval(function() {
 		led.setBrightness(server.getSettings().brightness);
 
 		led.setAnimation((pixelData, offset) => {
+			thisTime = Date.now();
 			switch(server.getSettings().on ? server.getSettings().mode : 0) {
 				case 6:
 					return patterns.marqueeSolids(pixelData, offset, led.getLedCount(), [...server.getSettings().color], server.getSettings().loops);
 				case 5:
 					return patterns.shootingStar(pixelData, offset, led.getLedCount(), [...server.getSettings().color]);
 				case 4:
+					//inOutFading
 					return patterns.inOutFading(pixelData, offset, led.getLedCount(), [...server.getSettings().color]);
 				case 3:
-					return patterns.marqueeGradient(pixelData, offset, led.getLedCount(), [...server.getSettings().color], server.getSettings().loops);
+					//marquee gradient
+					return patterns.gradient(pixelData, offset, led.getLedCount(), [...server.getSettings().color], server.getSettings().loops, true, true, 50, thisTime, lastTime);
 				case 2:
-					return patterns.gradient(pixelData, offset, led.getLedCount(), [...server.getSettings().color], server.getSettings().loops);
+					//gradient
+					return patterns.gradient(pixelData, offset, led.getLedCount(), [...server.getSettings().color], server.getSettings().loops, true, false, 50, thisTime, lastTime);
 				case 1:
-					return patterns.rainbow(pixelData, offset, led.getLedCount(), server.getSettings().loops);
+					//rainbow
+					return patterns.rainbow(pixelData, offset, led.getLedCount(), server.getSettings().loops), false, 50, thisTime, lastTime;
 				default:
-					return patterns.solid(pixelData, offset, led.getLedCount(), server.getSettings().on ? server.getSettings().color[0] : {r: 0, g: 0, b: 0});
+					//solid
+					return patterns.gradient(pixelData, offset, led.getLedCount(), server.getSettings().on ? server.getSettings().color[0] : {r: 0, g: 0, b: 0}, server.getSettings().loops, false, false, 50, thisTime, lastTime);
 			}
 		});
 	}
+
+	lastTime = thisTime;
+
 }, 1000/4)
 // Server
 

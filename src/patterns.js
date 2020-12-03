@@ -23,27 +23,38 @@ module.exports = {
 		
 		return {pixelData, offset};
 	},
-	rainbow: (pixelData, offset, ledCount = 48, loops = 1) => {
+	rainbow: (pixelData, offset, ledCount = 48, loops = 1, marquee = false, speed = 50, thisTime = 50, lastTime = 0) => {
 		for (var i = 0; i < ledCount; i++) {
-			pixelData[i] = colorwheel((offset + (i * 2)) * loops % 256);
+			pixelData[i] = colorwheel((Math.floor(offset) + Math.round(256/ledCount * i * loops)) % 256);
   		}
 
-		offset = (offset + 1) % 256;
+		if (marquee) {
+			offset = (offset + speed*(thisTime-lastTime)/1000) % 256;
+		}
 
 		return {pixelData, offset};
 	},
-	gradient: (pixelData, offset, ledCount = 48, color = [{r: 255, g: 255, b: 255}], loops = 1) => {
+	gradient: (pixelData, offset, ledCount = 48, color = [{r: 255, g: 255, b: 255}], loops = 1, mirrored = true, marquee = false, speed = 50, thisTime = 50, lastTime = 0) => {
 
 		if(color.length == 1) {
-			for(let i = 0; i < ledCount; i++) {
-				pixelData[i] = led.rgb2Int(color[0].r, color[0].g, color[0].b);
-			}
+			pixelData[i].fill(led.rgb2Int(color[0].r, color[0].g, color[0].b),0,ledCount);
 		}else {
-			let gradient = tinygradient(color);
+			let maxColorRepeat = color.length - 1;
+			let gradArray = color;
+			if (mirrored) {
+				maxColorRepeat = color.length;
+				let gradArray = [...color, color[0]];
+			}
+			let gradient = tinygradient(gradArray);
 
 			for(let i = 0; i < ledCount; i++) {
-				let col = gradient.rgbAt((i/ledCount) * loops % 1).toRgb();
+				let gradPos = maxColorRepeat*(((i + Math.floor(offset))/ledCount) * loops ) % maxColorRepeat;
+				let col = gradient.rgbAt(gradPos).toRgb();
 				pixelData[i] = led.rgb2Int(col.r, col.g, col.b);
+			}
+			if (marquee) {
+				offset += speed*(thisTime-lastTime)/1000;			
+				offset = offset % ledCount;
 			}
 		}
 
