@@ -39,7 +39,7 @@ module.exports = {
 	gradient: (pixelData, offset, ledCount = 48, color = [{r: 255, g: 255, b: 255}], loops = 1, mirrored = true, marquee = false, speed = 50, thisTime = 50, lastTime = 0) => {
 
 		if(color.length == 1) {
-			pixelData[i].fill(led.rgb2Int(color[0].r, color[0].g, color[0].b),0,ledCount);
+			pixelData.fill(led.rgb2Int(color[0].r, color[0].g, color[0].b),0,ledCount);
 		}else {
 			let maxColorRepeat = color.length - 1;
 			let gradArray = color;
