@@ -50,7 +50,7 @@ module.exports = {
 			let gradient = tinygradient(gradArray);
 
 			for(let i = 0; i < ledCount; i++) {
-				let gradPos = maxColorRepeat*(((i + Math.floor(offset))/ledCount) * loops ) % maxColorRepeat;
+				let gradPos = (maxColorRepeat*(((i + Math.floor(offset))/ledCount) * loops ) % maxColorRepeat) / maxColorRepeat;
 				let col = gradient.rgbAt(gradPos).toRgb();
 				pixelData[i] = led.rgb2Int(col.r, col.g, col.b);
 			}
