@@ -5,7 +5,7 @@
 	import { generateGradient } from './patterns';
 	import { int2Rgb, rgb2hex } from './rgb';
 
-	let settings = {on: false, mode: 0, color: [{r: 0, g: 0, b: 0}], speed: 30, gradient: 0, brightness: 255, loops: 1};
+	let settings = {on: false, mode: 0, color: [{r: 0, g: 0, b: 0}], speed: 30, gradient: 0, brightness: 255, loops: 10};
 
 	let color = "";
 
@@ -25,7 +25,7 @@
 </script>
 
 <svelte:head>
-	<title>Christmas Lights</title>
+	<title>Christmas Lights: Daddy Version</title>
 </svelte:head>
 
 <label for="onoff">Lights: </label>
@@ -55,7 +55,7 @@
 	<option value=2>Gradient &#x1F36D;</option>
 	<option value=3>Wave Gradient &#x1F30A;</option>
 	<option value=4>In & Out Fading ↔️</option>
-	<option value=5>Shooting Star ↔️</option>
+	<option value=5>Shooting Star &#x1F320;</option>
 	<option value=6>Marque Solid ↔️</option>
 </select>
 
