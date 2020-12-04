@@ -131,7 +131,7 @@ module.exports = {
 			nextStarBirthTime = star.addStar(ledCount, thisTime, starList, color.length, color);
 		}
 		// Now show all the stars
-		starData = {thisTime: thisTime, color:color, ledCount:ledCount, lightArray:pixelData};
+		starData = {thisTime, color, ledCount, lightArray:pixelData};
 		starList.forEach(function calcStars(value, index, array){star.processStars(value, index, array, starData);});
 
 		return {pixelData, offset};
