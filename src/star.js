@@ -1,3 +1,5 @@
+const tinycolor = require('tinycolor');
+
 
 module.exports = {
     processStars: (value, index, array, inData) => {
