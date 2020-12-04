@@ -119,7 +119,7 @@ module.exports = {
 	},
 	processStars: (value, index, array, inData) => {
 		star.processStars(value, index, array, inData);
-	}
+	},
 
 
 	//star stuff
