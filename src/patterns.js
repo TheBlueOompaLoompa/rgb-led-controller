@@ -129,12 +129,12 @@ module.exports = {
 		pixelData.fill(color[0],0,ledCount);
 		// Add new stars if needed			
 		if (thisTime > led.nextStarBirthTime){
-			led.nextStarBirthTime = led.star.addStar(ledCount, thisTime, starList, color.length, color);
+			led.nextStarBirthTime = led.addStar(ledCount, thisTime, starList, color.length, color);
 		}
 		// Now show all the stars
 		let starData = {thisTime, color, ledCount, lightArray:pixelData};
 		try {
-			led.starList.forEach(function calcStars(value, index, array){star.processStars(value, index, array, starData);}); 
+			led.starList.forEach(function calcStars(value, index, array){led.processStars(value, index, array, starData);}); 
 		} catch (error) {
 			console.log("shooting star:: " + error + "no stars nextBirth=" + led.nextStarBirthTime);
 		}

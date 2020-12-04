@@ -1,4 +1,5 @@
 var ws281x = require('rpi-ws281x-native');
+const star = require('./star');
 
 const NUM_LEDS = 600
 let pixelData = new Uint32Array(NUM_LEDS);
@@ -110,6 +111,16 @@ module.exports = {
 	reset: () => {
 		ws281x.reset();
 	},
+	addStar: (CountLEDs, nowTime, listOfStars, CountColors, colorList) => {
+		return star.addStar(CountLEDs, nowTime, listOfStars, CountColors, colorList);
+	},
+	processTwinkles: (value, index, array, inData) => {
+		star.processTwinkles(value, index, array, inData);
+	},
+	processStars: (value, index, array, inData) => {
+		star.processStars(value, index, array, inData);
+	}
+
 
 	//star stuff
 	nextStarBirthTime,
