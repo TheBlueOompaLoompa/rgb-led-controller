@@ -83,7 +83,7 @@ module.exports = {
 	},
 	setSpeed: (speed = 30) => {
 		framerate = speed;
-		console.log("clear");
+		console.log(`clear ${framerate}`);
 		clearInterval(animLoop);
 		animLoop = setInterval(intervalFunc, 1000 / framerate);
 	},
