@@ -1,5 +1,5 @@
 let led = require('./led');
-let patterns = require('./patterns');
+//let patterns = require('./patterns');
 let server = require('./server');
 
 var _ = require('lodash');
