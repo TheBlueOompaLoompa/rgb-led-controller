@@ -27,7 +27,7 @@ var updateLoop = setInterval(function() {
 
 		led.setBrightness(server.getSettings().brightness);
 
-		led.setAnimation((pixelData, offset) => {
+		led.setAnimation((pixelData, offset, lastTime, thisTime) => {
 			
 			switch(server.getSettings().on ? server.getSettings().mode : 0) {
 				case 6:
