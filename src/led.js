@@ -5,10 +5,10 @@ let pixelData = new Uint32Array(NUM_LEDS);
 let framerate = 30;
 let offset = 0;
 
-var lastTime = Date.now();
-var thisTime = Date.now();
-var nextStarBirthTime = 0;
-var starList = [{startTime:0, position:100, direction:1, speed:0.3, twinkleTime:1500, color:0xFF0000,},
+let lastTime = Date.now();
+let thisTime = Date.now();
+let nextStarBirthTime = 0;
+let starList = [{startTime:0, position:100, direction:1, speed:0.3, twinkleTime:1500, color:0xFF0000,},
 				{startTime:0, position:50, direction:-1, speed:0.5, twinkleTime:2000, color:0x00FF00,}];
 
 
@@ -79,6 +79,7 @@ const intervalFunc = function() {
 }
 
 module.exports = {
+
 	init: (options = {framerate, ledMapping}) => {
 
 		ws281x.init(NUM_LEDS);
@@ -109,6 +110,10 @@ module.exports = {
 	reset: () => {
 		ws281x.reset();
 	},
+
+	//star stuff
+	nextStarBirthTime,
+	starList,
 
 	// Conversion
 	rgb2Int,

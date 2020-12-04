@@ -136,7 +136,7 @@ module.exports = {
 		try {
 			led.starList.forEach(function calcStars(value, index, array){star.processStars(value, index, array, starData);}); 
 		} catch (error) {
-			console.log("shooting star:: no stars nextBirth=" + led.nextStarBirthTime);
+			console.log("shooting star:: " + error + "no stars nextBirth=" + led.nextStarBirthTime);
 		}
 		
 		
