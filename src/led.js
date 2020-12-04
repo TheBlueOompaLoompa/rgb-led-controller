@@ -85,6 +85,12 @@ module.exports = {
 		framerate = options.framerate;
 		ledMapping = options.ledMapping;
 
+		lastTime = Date.now();
+		thisTime = Date.now();
+		nextStarBirthTime = 0;
+		starList = [{startTime:0, position:100, direction:1, speed:0.3, twinkleTime:1500, color:0xFF0000,},
+					{startTime:0, position:50, direction:-1, speed:0.5, twinkleTime:2000, color:0x00FF00,}];
+
 		animLoop = setInterval(intervalFunc, 1000 / options.framerate);
 	},
 	setAnimation: (animationFunction = (pixelData, offset, lastTime, thisTime) => {return {pixelData, offset, lastTime, thisTime};}, options = {framerate,}) => {
