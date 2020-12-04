@@ -128,7 +128,7 @@ module.exports = {
  		//set background color
 		pixelData.fill(color[0],0,ledCount);
 		// Add new stars if needed			
-		if (thisTime > nextStarBirthTime){
+		if (thisTime > led.nextStarBirthTime){
 			led.nextStarBirthTime = led.star.addStar(ledCount, thisTime, starList, color.length, color);
 		}
 		// Now show all the stars
