@@ -18,7 +18,7 @@ module.exports = {
             }		
             //help with partial glow of next position while moving.
             let preGlow = 100 - (percentage * Math.abs(newPostion % 1));
-            let preCol = tinycolor.mix(inData.color[0].replace("0x","#"),array[index].color.replace("0x","#"),percentage).toRgb();
+            let preCol = tinycolor.mix(inData.color[0],array[index].color,percentage).toRgb();
         }			  
     
     },
@@ -33,7 +33,7 @@ module.exports = {
             //draw star
             let gradient = tinycolor(inData.color);
             let percentage = Math.min(Math.max(100-(100*((elapsedTime)/(array[index].twinkleTime))),0),100);
-            let col = tinycolor.mix(inData.color[0].replace("0x","#"),array[index].color.replace("0x","#"),percentage).toRgb();
+            let col = tinycolor.mix(inData.color[0],array[index].color,percentage).toRgb();
             inData.lightArray[Math.max(0, Math.min(inData.ledCount-1, array[index].position))] = rgb2Int(col.r, col.g, col.b);
         }			  
     },
