@@ -15,7 +15,7 @@ module.exports = {
             tailLength = Math.round(Math.abs(newPostion-array[index].position)) + 1;
             for (j=0; j< tailLength; j++) {
                 let tailpercentage = Math.min(Math.max(percentage*(1/(j+1)),0),100);
-                console.log("processStars::" + " idx:" + index + " tailpct:" + tailpercentage + " color0:"+inData.color[0]+" arr[idx].col:"+array[index].color);
+           //     console.log("processStars::" + " idx:" + index + " tailpct:" + tailpercentage + " color0:"+inData.color[0]+" arr[idx].col:"+array[index].color);
                 let col = tinycolor.mix(inData.color[0],array[index].color,tailpercentage).toRgb();
                 inData.lightArray[Math.max(0, Math.min(inData.ledCount-1, Math.round(newPostion)-(j*array[index].direction)))] = rgb2Int(col.r, col.g, col.b);
             }		
