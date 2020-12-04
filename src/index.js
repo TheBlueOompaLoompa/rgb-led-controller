@@ -1,5 +1,5 @@
 let led = require('./led');
-//let patterns = require('./patterns');
+let patterns = require('./patterns');
 let server = require('./server');
 
 var _ = require('lodash');
@@ -27,28 +27,28 @@ var updateLoop = setInterval(function() {
 
 		led.setBrightness(server.getSettings().brightness);
 
-		led.setAnimation((pixelData, offset, thisTime, lastTime, nextStarBirthTime, starList) => {
+		led.setAnimation((pixelData, offset) => {
 			
 			switch(server.getSettings().on ? server.getSettings().mode : 0) {
 				case 6:
-					return patterns.marqueeSolids(pixelData, offset, thisTime, lastTime, nextStarBirthTime, starList, led.getLedCount(), [...server.getSettings().color], server.getSettings().loops);
+					return patterns.marqueeSolids(pixelData, offset, led.getLedCount(), [...server.getSettings().color], server.getSettings().loops);
 				case 5:
-					return patterns.shootingStar(pixelData, offset, thisTime, lastTime, nextStarBirthTime, starList, led.getLedCount(), [{r: 0, g: 0, b: 0},{r: 255, g: 0, b: 0},{r: 0, g: 255, b: 0}], 50, nextStarBirthTime, starList);
+					return patterns.shootingStar(pixelData, offset, led.getLedCount(), [{r: 0, g: 0, b: 0},{r: 255, g: 0, b: 0},{r: 0, g: 255, b: 0}], 50, nextStarBirthTime, starList);
 				case 4:
 					//inOutFading
-					return patterns.inOutFading(pixelData, offset, thisTime, lastTime, nextStarBirthTime, starList, led.getLedCount(), [...server.getSettings().color]);
+					return patterns.inOutFading(pixelData, offset, led.getLedCount(), [...server.getSettings().color]);
 				case 3:
 					//marquee gradient
-					return patterns.gradient(pixelData, offset, thisTime, lastTime, nextStarBirthTime, starList, led.getLedCount(), [...server.getSettings().color], server.getSettings().loops, true, true, 50);
+					return patterns.gradient(pixelData, offset, led.getLedCount(), [...server.getSettings().color], server.getSettings().loops, true, true, 50);
 				case 2:
 					//gradient
-					return patterns.gradient(pixelData, offset, thisTime, lastTime, nextStarBirthTime, starList, led.getLedCount(), [...server.getSettings().color], server.getSettings().loops, true, false, 50);
+					return patterns.gradient(pixelData, offset, led.getLedCount(), [...server.getSettings().color], server.getSettings().loops, true, false, 50);
 				case 1:
 					//rainbow
-					return patterns.rainbow(pixelData, offset, thisTime, lastTime, nextStarBirthTime, starList, led.getLedCount(), server.getSettings().loops, false, 50);
+					return patterns.rainbow(pixelData, offset, led.getLedCount(), server.getSettings().loops, false, 50);
 				default:
 					//solid
-					return patterns.gradient(pixelData, offset, thisTime, lastTime, nextStarBirthTime, starList, led.getLedCount(), server.getSettings().on ? [server.getSettings().color[0]] : [{r: 0, g: 0, b: 0}], server.getSettings().loops, false, false, 50);
+					return patterns.gradient(pixelData, offset, led.getLedCount(), server.getSettings().on ? [server.getSettings().color[0]] : [{r: 0, g: 0, b: 0}], server.getSettings().loops, false, false, 50);
 			}
 		});
 	}

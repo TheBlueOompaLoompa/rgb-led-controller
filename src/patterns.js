@@ -1,5 +1,5 @@
 let led = require('./led');
-//let star = require('./star');
+let star = require('./star');
 const termColor = require('ansi-256-colors');
 
 const tinygradient = require('tinygradient');
@@ -18,14 +18,14 @@ Array.prototype.insert = function (x, item) {
 }
 
 module.exports = {
-	solid: (pixelData, offset, thisTime, lastTime, nextStarBirthTime, starList, ledCount = 24, color = {r: 0, g: 0, b: 0}) => {
+	solid: (pixelData, offset, ledCount = 24, color = {r: 0, g: 0, b: 0}) => {
 		for(let i = 0; i < ledCount; i++) {
 			pixelData[i] = led.rgb2Int(color.r, color.g, color.b);
 		}
 		
-		return {pixelData, offset, thisTime, lastTime, nextStarBirthTime, starList};
+		return {pixelData, offset};
 	},
-	rainbow: (pixelData, offset, thisTime, lastTime, nextStarBirthTime, starList, ledCount = 48, loops = 1, marquee = false, speed = 50) => {
+	rainbow: (pixelData, offset, ledCount = 48, loops = 1, marquee = false, speed = 50) => {
 		for (var i = 0; i < ledCount; i++) {
 			pixelData[i] = colorwheel((Math.floor(offset) + Math.round(256/ledCount * i * loops)) % 256);
   		}
@@ -34,9 +34,9 @@ module.exports = {
 			offset = (offset + speed*(thisTime-lastTime)/1000) % 256;
 		}
 
-		return {pixelData, offset, thisTime, lastTime, nextStarBirthTime, starList};
+		return {pixelData, offset};
 	},
-	gradient: (pixelData, offset, thisTime, lastTime, nextStarBirthTime, starList, ledCount = 48, color = [{r: 255, g: 255, b: 255}], loops = 1, mirrored = true, marquee = false, speed = 50) => {
+	gradient: (pixelData, offset, ledCount = 48, color = [{r: 255, g: 255, b: 255}], loops = 1, mirrored = true, marquee = false, speed = 50) => {
 
 		if(color.length == 1) {
 			pixelData.fill(led.rgb2Int(color[0].r, color[0].g, color[0].b),0,ledCount);
@@ -60,9 +60,9 @@ module.exports = {
 			}
 		}
 
-		return {pixelData, offset, thisTime, lastTime, nextStarBirthTime, starList};
+		return {pixelData, offset};
 	},
-	marqueeGradient: (pixelData, offset, thisTime, lastTime, nextStarBirthTime, starList, ledCount = 48, color = [{r: 255, g: 255, b: 255}], loops = 1) => {
+	marqueeGradient: (pixelData, offset, ledCount = 48, color = [{r: 255, g: 255, b: 255}], loops = 1) => {
 		if(color.length == 1) {
 			for(let i = 0; i < ledCount; i++) {
 				pixelData[i] = led.rgb2Int(color[0].r, color[0].g, color[0].b);
@@ -86,9 +86,9 @@ module.exports = {
 			}
 		}
 
-		return {pixelData, offset, thisTime, lastTime, nextStarBirthTime, starList};
+		return {pixelData, offset};
 	},
-	inOutFading: (pixelData, offset, thisTime, lastTime, nextStarBirthTime, starList, ledCount = 48, color = [{r: 255, g: 255, b: 255}]) => {
+	inOutFading: (pixelData, offset, ledCount = 48, color = [{r: 255, g: 255, b: 255}]) => {
 		let tempCol = [...color];
 		for(let i = 0; i < tempCol.length; i++) {
 			color.insert(i+1, {r: 0, g: 0, b: 0});
@@ -121,9 +121,9 @@ module.exports = {
 			offset = 0;
 		}
 
-		return {pixelData, offset, thisTime, lastTime, nextStarBirthTime, starList};
+		return {pixelData, offset};
 	},
-	shootingStar: (pixelData, offset, thisTime, lastTime, nextStarBirthTime, starList, ledCount = 48, color = [{r: 255, g: 255, b: 255}], speed = 50, nextStarBirthTime = 50, starList) => {
+	shootingStar: (pixelData, offset, ledCount = 48, color = [{r: 255, g: 255, b: 255}], speed = 50, nextStarBirthTime = 50, starList) => {
 /*
  		//set background color
 		pixelData.fill(color[0],0,ledCount);
@@ -136,9 +136,9 @@ module.exports = {
 		starList.forEach(function calcStars(value, index, array){star.processStars(value, index, array, starData);}); 
 */
 
-		return {pixelData, offset, thisTime, lastTime, nextStarBirthTime, starList};
+		return {pixelData, offset};
 	},
-	marqueeSolids: (pixelData, offset, thisTime, lastTime, nextStarBirthTime, starList, ledCount = 48, color = [{r: 255, g: 255, b: 255}], loops = 1) => {
+	marqueeSolids: (pixelData, offset, ledCount = 48, color = [{r: 255, g: 255, b: 255}], loops = 1) => {
 		if(color.length == 1) {
 			for(let i = 0; i < ledCount; i++) {
 				pixelData[i] = led.rgb2Int(color[0].r, color[0].g, color[0].b);
@@ -162,6 +162,6 @@ module.exports = {
 			}
 		}
 
-		return {pixelData, offset, thisTime, lastTime, nextStarBirthTime, starList};
+		return {pixelData, offset};
 	},
 }
