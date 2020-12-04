@@ -13,7 +13,7 @@ var starList = [{startTime:0, position:100, direction:1, speed:0.3, twinkleTime:
 
 
 let animLoop = undefined;
-let animation = (pixelData, offset) => {return {pixelData, offset};}
+let animation = (pixelData, offset, lastTime, thisTime) => {return {pixelData, offset, lastTime, thisTime};}
 
 let ledMapping = 0;
 
@@ -67,15 +67,15 @@ function remapLed(mapping) {
 }
 
 const intervalFunc = function() {
-	//thisTime = Date.now();
-	({pixelData, offset} = animation(pixelData, offset));
+	thisTime = Date.now();
+	({pixelData, offset, lastTime, thisTime} = animation(pixelData, offset, lastTime, thisTime));
 
 	let disp = remapLed(ledMapping);
 
 	ws281x.render(disp);
 	//console.log(animLoop);
 
-	//lastTime = thisTime;
+	lastTime = thisTime;
 }
 
 module.exports = {
@@ -87,7 +87,7 @@ module.exports = {
 
 		animLoop = setInterval(intervalFunc, 1000 / options.framerate);
 	},
-	setAnimation: (animationFunction = (pixelData, offset) => {return {pixelData, offset};}, options = {framerate,}) => {
+	setAnimation: (animationFunction = (pixelData, offset, lastTime, thisTime) => {return {pixelData, offset, lastTime, thisTime};}, options = {framerate,}) => {
 		animation = animationFunction;
 		framerate = options.framerate;
 	},
