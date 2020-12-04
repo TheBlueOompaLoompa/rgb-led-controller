@@ -132,10 +132,14 @@ module.exports = {
 			led.nextStarBirthTime = led.star.addStar(ledCount, thisTime, starList, color.length, color);
 		}
 		// Now show all the stars
-		led.starData = {thisTime, color, ledCount, lightArray:pixelData};
-		led.starList.forEach(function calcStars(value, index, array){star.processStars(value, index, array, led.starData);}); 
-
-
+		let starData = {thisTime, color, ledCount, lightArray:pixelData};
+		try {
+			led.starList.forEach(function calcStars(value, index, array){star.processStars(value, index, array, starData);}); 
+		} catch (error) {
+			console.log("shooting star:: no stars nextBirth=" + led.nextStarBirthTime);
+		}
+		
+		
 		return {pixelData, offset, lastTime, thisTime};
 	},
 	marqueeSolids: (pixelData, offset, lastTime, thisTime, ledCount = 48, color = [{r: 255, g: 255, b: 255}], loops = 1) => {
