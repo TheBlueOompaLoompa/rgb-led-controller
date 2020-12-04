@@ -8,7 +8,7 @@ module.exports = {
             array.splice(index,1);
         }else{
             let newPostion = array[index].position + (array[index].speed*elapsedTime*array[index].direction/1000)
-            let gradient = tinycolor(inData.color);
+        //    let gradient = tinycolor(inData.color);
             let percentage = 100-(100*((elapsedTime)/(array[index].twinkleTime)));
             tailLength = Math.round(Math.abs(newPostion-array[index].position)) + 1;
             for (j=0; j< tailLength; j++) {
