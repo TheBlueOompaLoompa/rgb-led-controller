@@ -123,7 +123,7 @@ module.exports = {
 
 		return {pixelData, offset, lastTime, thisTime};
 	},
-	shootingStar: (pixelData, offset, lastTime, thisTime, ledCount = 48, color = [{r: 255, g: 255, b: 255}], speed = 50, nextStarBirthTime = 50, starList) => {
+	shootingStar: (pixelData, offset, lastTime, thisTime, ledCount = 48, color = [{r: 255, g: 255, b: 255}], speed = 50) => {
 /*
  		//set background color
 		pixelData.fill(color[0],0,ledCount);

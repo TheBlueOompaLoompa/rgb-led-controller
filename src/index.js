@@ -33,22 +33,22 @@ var updateLoop = setInterval(function() {
 				case 6:
 					return patterns.marqueeSolids(pixelData, offset, lastTime, thisTime, led.getLedCount(), [...server.getSettings().color], server.getSettings().loops);
 				case 5:
-					return patterns.shootingStar(pixelData, offset, lastTime, thisTime, led.getLedCount(), [{r: 0, g: 0, b: 0},{r: 255, g: 0, b: 0},{r: 0, g: 255, b: 0}], 50, nextStarBirthTime, starList);
+					return patterns.shootingStar(pixelData, offset, lastTime, thisTime, led.getLedCount(), [{r: 0, g: 0, b: 0},{r: 255, g: 0, b: 0},{r: 0, g: 255, b: 0}], 5);
 				case 4:
 					//inOutFading
 					return patterns.inOutFading(pixelData, offset, lastTime, thisTime, led.getLedCount(), [...server.getSettings().color]);
 				case 3:
 					//marquee gradient
-					return patterns.gradient(pixelData, offset, lastTime, thisTime, led.getLedCount(), [...server.getSettings().color], server.getSettings().loops, true, true, 50);
+					return patterns.gradient(pixelData, offset, lastTime, thisTime, led.getLedCount(), [...server.getSettings().color], server.getSettings().loops, true, true, 5);
 				case 2:
 					//gradient
-					return patterns.gradient(pixelData, offset, lastTime, thisTime, led.getLedCount(), [...server.getSettings().color], server.getSettings().loops, true, false, 50);
+					return patterns.gradient(pixelData, offset, lastTime, thisTime, led.getLedCount(), [...server.getSettings().color], server.getSettings().loops, true, false, 5);
 				case 1:
 					//rainbow
-					return patterns.rainbow(pixelData, offset, lastTime, thisTime, led.getLedCount(), server.getSettings().loops, false, 50);
+					return patterns.rainbow(pixelData, offset, lastTime, thisTime, led.getLedCount(), server.getSettings().loops, false, 5);
 				default:
 					//solid
-					return patterns.gradient(pixelData, offset, lastTime, thisTime, led.getLedCount(), server.getSettings().on ? [server.getSettings().color[0]] : [{r: 0, g: 0, b: 0}], server.getSettings().loops, false, false, 50);
+					return patterns.gradient(pixelData, offset, lastTime, thisTime, led.getLedCount(), server.getSettings().on ? [server.getSettings().color[0]] : [{r: 0, g: 0, b: 0}], server.getSettings().loops, false, false, 5);
 			}
 		});
 	}
