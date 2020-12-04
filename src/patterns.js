@@ -1,5 +1,5 @@
 let led = require('./led');
-let star = require('./star');
+//let star = require('./star');
 const termColor = require('ansi-256-colors');
 
 const tinygradient = require('tinygradient');
@@ -124,7 +124,8 @@ module.exports = {
 		return {pixelData, offset, thisTime, lastTime, nextStarBirthTime, starList};
 	},
 	shootingStar: (pixelData, offset, thisTime, lastTime, nextStarBirthTime, starList, ledCount = 48, color = [{r: 255, g: 255, b: 255}], speed = 50, nextStarBirthTime = 50, starList) => {
-		//set background color
+/*
+ 		//set background color
 		pixelData.fill(color[0],0,ledCount);
 		// Add new stars if needed			
 		if (thisTime > nextStarBirthTime){
@@ -132,7 +133,8 @@ module.exports = {
 		}
 		// Now show all the stars
 		starData = {thisTime, color, ledCount, lightArray:pixelData};
-		starList.forEach(function calcStars(value, index, array){star.processStars(value, index, array, starData);});
+		starList.forEach(function calcStars(value, index, array){star.processStars(value, index, array, starData);}); 
+*/
 
 		return {pixelData, offset, thisTime, lastTime, nextStarBirthTime, starList};
 	},
