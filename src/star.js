@@ -31,7 +31,7 @@ module.exports = {
             if (leadingIndex > 0 && leadingIndex < inData.ledCount-1 && leadingIndex != newPostion) {
                 inData.lightArray[leadingIndex] = rgb2Int(preCol.r, preCol.g, preCol.b);
             }
-            if (index = 0) {
+            if (index = 1) {
                 console.log("processStars:: " + " starPos:" + newPostion + " pct:" + percentage + " nextPos:" + leadingIndex + " pct:" + preGlow);
             }
         }			  
