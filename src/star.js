@@ -38,7 +38,7 @@ module.exports = {
                 inData.lightArray[leadingIndex] = rgb2Int(preCol.r, preCol.g, preCol.b);
             }
             if (index = 1) {
-                console.log("processStars:: " + " elapsedT:" + elapsedTime + " starPos:" + Number(newPostion.toFixed(3)) + " newIndex:" + newIndex + " pct:" + 100-Number(percentage.toFixed(3)) + " nextPos:" + leadingIndex + " pct:" + 100-Number(preGlow.toFixed(3)));
+                console.log("processStars:: " + " elapsedT:" + elapsedTime + " starPos:" + newPostion + " newIndex:" + newIndex + " pct:" + percentage + " nextPos:" + leadingIndex + " pct:" + preGlow);
             }
         }			  
     
