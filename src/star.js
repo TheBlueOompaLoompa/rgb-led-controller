@@ -20,11 +20,20 @@ module.exports = {
                 inData.lightArray[Math.max(0, Math.min(inData.ledCount-1, Math.round(newPostion)-(j*array[index].direction)))] = rgb2Int(col.r, col.g, col.b);
             }		
             //help with partial glow of next position while moving.
-            let preGlow = 100 - (percentage * Math.abs(array[index].direction - (newPostion % 1)));
+            let preGlow = (percentage * Math.abs(array[index].direction - (newPostion % 1)));
             let preCol = tinycolor.mix(inData.color[0],array[index].color,preGlow).toRgb();
-            let leadingIndex = Math.max(0, Math.min(inData.ledCount-1, Math.round(newPostion)+array[index].direction));
-            inData.lightArray[leadingIndex] = rgb2Int(preCol.r, preCol.g, preCol.b);
-            console.log("processStars:: " + " starPos:" + newPostion + " pct:" + percentage + " nextPos:" + leadingIndex + " pct:" + preGlow);
+            let leadingIndex = -666;
+            if (array[index].direction > 0) {
+                leadingIndex = Math.ceil(newPostion);
+            }else{
+                leadingIndex = Math.floor(newPostion);
+            }
+            if (leadingIndex > 0 && leadingIndex < inData.ledCount-1 && leadingIndex != newPostion) {
+                inData.lightArray[leadingIndex] = rgb2Int(preCol.r, preCol.g, preCol.b);
+            }
+            if (index = 0) {
+                console.log("processStars:: " + " starPos:" + newPostion + " pct:" + percentage + " nextPos:" + leadingIndex + " pct:" + preGlow);
+            }
         }			  
     
     },
