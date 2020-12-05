@@ -57,6 +57,7 @@
 	<option value=4>In & Out Fading ↔️</option>
 	<option value=5>Shooting Star &#x1F320;</option>
 	<option value=6>Marque Solid ↔️</option>
+	<option value=7>Twinkle &#x1F320;</option>
 </select>
 
 {#if settings.mode == 0}

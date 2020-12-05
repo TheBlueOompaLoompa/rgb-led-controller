@@ -142,6 +142,25 @@ module.exports = {
 		
 		return {pixelData, offset, lastTime, thisTime};
 	},
+	twinkles: (pixelData, offset, lastTime, thisTime, ledCount = 48, color = [{r: 255, g: 255, b: 255}], speed = 50) => {
+
+ 		//set background color
+		pixelData.fill(color[0],0,ledCount);
+		// Add new stars if needed			
+		if (thisTime > led.nextStarBirthTime){
+			led.nextStarBirthTime = led.addStar(ledCount, thisTime, led.starList, color.length, color, starSpeed);
+		}
+		// Now show all the stars
+		let starData = {thisTime, color, ledCount, lightArray:pixelData};
+		try {
+			led.starList.forEach(function calcStars(value, index, array){led.processTwinkles(value, index, array, starData);}); 
+		} catch (error) {
+			console.log("twinkles:: " + error + "no stars nextBirth=" + led.nextStarBirthTime);
+		}
+		
+		
+		return {pixelData, offset, lastTime, thisTime};
+	},
 	marqueeSolids: (pixelData, offset, lastTime, thisTime, ledCount = 48, color = [{r: 255, g: 255, b: 255}], loops = 1) => {
 		if(color.length == 1) {
 			for(let i = 0; i < ledCount; i++) {
