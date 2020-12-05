@@ -8,6 +8,9 @@ module.exports = {
         if (elapsedTime > array[index].twinkleTime) {
             //remove star
             array.splice(index,1);
+            if (index = 1) {
+                console.log("processStars:: removed star index:1");
+            }
         }else{
             let newPostion = array[index].position + (array[index].speed*elapsedTime*array[index].direction/1000)
             let newIndex = -666;
