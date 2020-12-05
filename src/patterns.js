@@ -148,7 +148,7 @@ module.exports = {
 		pixelData.fill(color[0],0,ledCount);
 		// Add new stars if needed			
 		if (thisTime > led.nextStarBirthTime){
-			led.nextStarBirthTime = led.addStar(ledCount, thisTime, led.starList, color.length, color, starSpeed);
+			led.nextStarBirthTime = led.addStar(ledCount, thisTime, led.starList, color.length, color, 1);
 		}
 		// Now show all the stars
 		let starData = {thisTime, color, ledCount, lightArray:pixelData};
