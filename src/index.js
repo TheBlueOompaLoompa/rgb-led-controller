@@ -33,7 +33,7 @@ var updateLoop = setInterval(function() {
 				case 6:
 					return patterns.marqueeSolids(pixelData, offset, lastTime, thisTime, led.getLedCount(), [...server.getSettings().color], server.getSettings().loops);
 				case 5:
-					return patterns.shootingStar(pixelData, offset, lastTime, thisTime, led.getLedCount(), [{r: 0, g: 0, b: 0},{r: 255, g: 0, b: 0},{r: 0, g: 255, b: 0}], 5);
+					return patterns.shootingStar(pixelData, offset, lastTime, thisTime, led.getLedCount(), [{r: 0, g: 0, b: 0},{r: 255, g: 0, b: 0},{r: 0, g: 255, b: 0}], 5, server.getSettings().starSpeed);
 				case 4:
 					//inOutFading
 					return patterns.inOutFading(pixelData, offset, lastTime, thisTime, led.getLedCount(), [...server.getSettings().color]);

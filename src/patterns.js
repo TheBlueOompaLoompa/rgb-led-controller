@@ -123,13 +123,13 @@ module.exports = {
 
 		return {pixelData, offset, lastTime, thisTime};
 	},
-	shootingStar: (pixelData, offset, lastTime, thisTime, ledCount = 48, color = [{r: 255, g: 255, b: 255}], speed = 50) => {
+	shootingStar: (pixelData, offset, lastTime, thisTime, ledCount = 48, color = [{r: 255, g: 255, b: 255}], speed = 50, starSpeed=10) => {
 
  		//set background color
 		pixelData.fill(color[0],0,ledCount);
 		// Add new stars if needed			
 		if (thisTime > led.nextStarBirthTime){
-			led.nextStarBirthTime = led.addStar(ledCount, thisTime, led.starList, color.length, color);
+			led.nextStarBirthTime = led.addStar(ledCount, thisTime, led.starList, color.length, color, starSpeed);
 		}
 		// Now show all the stars
 		let starData = {thisTime, color, ledCount, lightArray:pixelData};

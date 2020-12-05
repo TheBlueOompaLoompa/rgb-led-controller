@@ -82,6 +82,12 @@
 	</select>
 {/if}
 
+{#if settings.mode == 5}
+	<label for="starSpeed" transition:fly="{{ y: 100, duration: 500 }}">Tail Length: </label>
+	<input type="range" name="starSpeed" id="starSpeed" bind:value={ settings.starSpeed } on:change={ () => { updateSetting("starSpeed", parseInt(settings.starSpeed, 6));}} 
+	transition:fly="{{ y: 100, duration: 500 }}">
+{/if}
+
 {#if settings.mode >= 1 && settings.mode <= 3}
 	<label for="loops" transition:fly="{{ y: 100, duration: 500 }}">Loops &#x1F504;: </label>
 	<input type="number" min=1 name="loops" bind:value={ settings.loops } on:change={ () => { updateSetting("loops", parseInt(settings.loops, 10)); } } transition:fly="{{ y: 100, duration: 500 }}">

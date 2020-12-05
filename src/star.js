@@ -41,12 +41,12 @@ module.exports = {
         }			  
     },
 
-    addStar: (CountLEDs, nowTime, listOfStars, CountColors, colorList) => {
+    addStar: (CountLEDs, nowTime, listOfStars, CountColors, colorList, starSpeed) => {
         if (listOfStars.length < CountLEDs/10){
             let tempstartTime = nowTime;
             let tempposition = Math.round(Math.random() * CountLEDs);
             let temptwinkleTime = Math.round(Math.random() * 2000)+2000;
-            let tempspeed = Math.round(Math.random() * 4)+2;
+            let tempspeed = Math.round(Math.random() * starSpeed)+2;
             let tempdirection = 1;
             if(Math.random() > .5) {
                 tempdirection = -1;
