@@ -5,7 +5,7 @@
 	import { generateGradient } from './patterns';
 	import { int2Rgb, rgb2hex } from './rgb';
 
-	let settings = {on: false, mode: 0, color: [{r: 0, g: 0, b: 0}], speed: 30, gradient: 0, brightness: 255, loops: 10};
+	let settings = {on: false, mode: 0, color: [{r: 0, g: 0, b: 0}], speed: 30, gradient: 0, brightness: 255, loops: 10, starSpeed: 4};
 
 	let color = "";
 
@@ -83,7 +83,7 @@
 {/if}
 
 {#if settings.mode == 5}
-	<label for="starSpeed" transition:fly="{{ y: 100, duration: 500 }}">Tail Length: </label>
+	<label for="starSpeed" transition:fly="{{ y: 100, duration: 500 }}">Star Speed: </label>
 	<input type="range" name="starSpeed" id="starSpeed" bind:value={ settings.starSpeed } on:change={ () => { updateSetting("starSpeed", parseInt(settings.starSpeed, 6));}} 
 	transition:fly="{{ y: 100, duration: 500 }}">
 {/if}
