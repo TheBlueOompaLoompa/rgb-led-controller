@@ -54,6 +54,7 @@ module.exports = {
             let temptemp = Math.random()*(CountColors-1);
             temptemp = Math.min(Math.floor(temptemp)+1, colorList.length-1);
             let tempcolor = colorList[temptemp];
+            console.log("addStar::" + " StarCount:" + listOfStars.length + " color:" + tempcolor + " speed:" + tempspeed + " position:" + tempposition);
             let tempStar = {startTime:tempstartTime, position:tempposition, direction:tempdirection, position:tempposition, speed:tempspeed, twinkleTime:temptwinkleTime, color:tempcolor};
             listOfStars.push(tempStar);
         }
