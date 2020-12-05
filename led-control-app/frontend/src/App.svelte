@@ -84,7 +84,7 @@
 
 {#if settings.mode == 5}
 	<label for="starSpeed" transition:fly="{{ y: 100, duration: 500 }}">Star Speed: </label>
-	<input type="range" name="starSpeed" id="starSpeed" bind:value={ settings.starSpeed } on:change={ () => { updateSetting("starSpeed", parseInt(settings.starSpeed, 6));}} 
+	<input type="range" name="starSpeed" id="starSpeed" bind:value={ settings.starSpeed } on:change={ () => { updateSetting("starSpeed", parseInt(settings.starSpeed, 10));}} 
 	transition:fly="{{ y: 100, duration: 500 }}">
 {/if}
 
