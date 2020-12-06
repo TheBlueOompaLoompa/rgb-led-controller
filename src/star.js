@@ -7,10 +7,7 @@ module.exports = {
         let elapsedTime = inData.thisTime - array[index].startTime;
         if (elapsedTime > array[index].twinkleTime) {
             //remove star
-            array.splice(index,1);
-            if (index = 1) {
-                console.log("processStars:: removed star index:1");
-            }
+           // array.splice(index,1);
         }else{
             let newPostion = array[index].position + (array[index].speed*elapsedTime*array[index].direction/1000)
             let newIndex = -666;
@@ -52,7 +49,7 @@ module.exports = {
         let elapsedTime = inData.thisTime - array[index].startTime;
         if (elapsedTime > array[index].twinkleTime) {
             //remove star
-            array.splice(index,1);
+            //array.splice(index,1);
         }else{
             //draw star
             let gradient = tinycolor(inData.color);
@@ -63,21 +60,25 @@ module.exports = {
     },
 
     addStar: (CountLEDs, nowTime, listOfStars, CountColors, colorList, starSpeed) => {
-        if (listOfStars.length < CountLEDs/10){
-            let tempstartTime = nowTime;
-            let tempposition = Math.round(Math.random() * CountLEDs);
-            let temptwinkleTime = Math.round(Math.random() * 2000)+2000;
-            let tempspeed = Math.round(Math.random() * starSpeed)+2;
-            let tempdirection = 1;
-            if(Math.random() > .5) {
-                tempdirection = -1;
+        for(let i=0; i<listOfStars.length; i++)
+        {
+            if(listOfStars[i].twinkleTime < (nowTime - listOfStars[i].startTime)) {
+                let tempstartTime = nowTime;
+                let tempposition = Math.round(Math.random() * CountLEDs);
+                let temptwinkleTime = Math.round(Math.random() * 2000)+2000;
+                let tempspeed = Math.round(Math.random() * starSpeed)+2;
+                let tempdirection = 1;
+                if(Math.random() > .5) {
+                    tempdirection = -1;
+                }
+                let temptemp = Math.random()*(CountColors-1);
+                temptemp = Math.min(Math.floor(temptemp)+1, colorList.length-1);
+                let tempcolor = colorList[temptemp];
+                console.log("addStar::" + " StarCount:" + listOfStars.length + " color:" + tempcolor + " speed:" + tempspeed + " position:" + tempposition);
+                let tempStar = {startTime:tempstartTime, position:tempposition, direction:tempdirection, position:tempposition, speed:tempspeed, twinkleTime:temptwinkleTime, color:tempcolor};
+                listOfStars[i] = tempStar;
+                break;
             }
-            let temptemp = Math.random()*(CountColors-1);
-            temptemp = Math.min(Math.floor(temptemp)+1, colorList.length-1);
-            let tempcolor = colorList[temptemp];
-            console.log("addStar::" + " StarCount:" + listOfStars.length + " color:" + tempcolor + " speed:" + tempspeed + " position:" + tempposition);
-            let tempStar = {startTime:tempstartTime, position:tempposition, direction:tempdirection, position:tempposition, speed:tempspeed, twinkleTime:temptwinkleTime, color:tempcolor};
-            listOfStars.push(tempStar);
         }
         let WaitNextStarBirthTime = nowTime + (Math.random() * 10000/CountLEDs);
         return WaitNextStarBirthTime;
