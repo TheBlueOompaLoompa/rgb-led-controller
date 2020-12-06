@@ -18,7 +18,7 @@ module.exports = {
             }
         //    let gradient = tinycolor(inData.color);
             let percentage = 100-(100*((elapsedTime)/(array[index].twinkleTime)));
-            tailLength = Math.round(Math.abs(newPostion-array[index].position)) + 1;
+            tailLength = Math.floor(Math.abs(newPostion-array[index].position)) + 1;
             for (j=0; j< tailLength; j++) {
                 let tailpercentage = Math.min(Math.max(percentage*(1/((j*.2)+1)),0),100);
            //     console.log("processStars::" + " idx:" + index + " tailpct:" + tailpercentage + " color0:"+inData.color[0]+" arr[idx].col:"+array[index].color);
