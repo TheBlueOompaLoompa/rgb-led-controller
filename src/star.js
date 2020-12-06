@@ -37,7 +37,7 @@ module.exports = {
             if (leadingIndex > 0 && leadingIndex < inData.ledCount-1 && leadingIndex != newPostion) {
                 inData.lightArray[leadingIndex] = rgb2Int(preCol.r, preCol.g, preCol.b);
             }
-            if (index = 1) {
+            if (index == 1) {
                 console.log("processStars:: " + " elapsedT:" + elapsedTime + " starPos:" + newPostion + " newIndex:" + newIndex + " pct:" + percentage + " nextPos:" + leadingIndex + " pct:" + preGlow);
             }
         }			  
@@ -74,7 +74,9 @@ module.exports = {
                 let temptemp = Math.random()*(CountColors-1);
                 temptemp = Math.min(Math.floor(temptemp)+1, colorList.length-1);
                 let tempcolor = colorList[temptemp];
-                console.log("addStar::" + " StarCount:" + listOfStars.length + " color:" + tempcolor + " speed:" + tempspeed + " position:" + tempposition + " index:" + i);
+                if (i == 1) {
+                    console.log("addStar::" + " StarCount:" + listOfStars.length + " color:" + tempcolor + " speed:" + tempspeed + " position:" + tempposition + " index:" + i);
+                }
                 let tempStar = {startTime:tempstartTime, position:tempposition, direction:tempdirection, position:tempposition, speed:tempspeed, twinkleTime:temptwinkleTime, color:tempcolor};
                 listOfStars[i] = tempStar;
                 break;
