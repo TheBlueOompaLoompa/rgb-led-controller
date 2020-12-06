@@ -32,7 +32,7 @@ module.exports = {
             }else{
                 leadingIndex = Math.floor(newPostion);
             }
-            let preGlow = 100 - (percentage * Math.abs(newPostion - newIndex));
+            let preGlow = (percentage * Math.abs(newPostion - newIndex));
             let preCol = tinycolor.mix(inData.color[0],array[index].color,preGlow).toRgb();
             if (leadingIndex > 0 && leadingIndex < inData.ledCount-1 && leadingIndex != newPostion) {
                 inData.lightArray[leadingIndex] = rgb2Int(preCol.r, preCol.g, preCol.b);
