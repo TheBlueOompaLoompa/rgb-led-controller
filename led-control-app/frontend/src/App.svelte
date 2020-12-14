@@ -5,7 +5,7 @@
 	import { generateGradient } from './patterns';
 	import { int2Rgb, rgb2hex } from './rgb';
 
-	let settings = {on: false, mode: 0, color: [{r: 0, g: 0, b: 0}], speed: 30, gradient: 0, brightness: 255, loops: 1};
+	let settings = {on: false, mode: 0, color: [{r: 0, g: 0, b: 0}], speed: 30, gradient: 0, brightness: 255, loops: 10};
 
 	let color = "";
 

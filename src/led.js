@@ -82,10 +82,11 @@ module.exports = {
 		framerate = options.framerate;
 	},
 	setSpeed: (speed = 30) => {
-		framerate = speed;
+		framerate = 1000 / speed;
 		console.log("clear");
 		clearInterval(animLoop);
-		animLoop = setInterval(intervalFunc, 1000 / framerate);
+		console.log("new interval: " + framerate);
+		animLoop = setInterval(intervalFunc,  framerate);
 	},
 	setBrightness: (brightness) => {
 		ws281x.setBrightness(brightness);
