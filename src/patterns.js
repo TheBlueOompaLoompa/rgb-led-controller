@@ -2,6 +2,7 @@ let led = require('./led');
 const termColor = require('ansi-256-colors');
 
 const tinygradient = require('tinygradient');
+const colorBank = require('./color');
 
 // rainbow-colors, taken from http://goo.gl/Cs3H0v
 function colorwheel(pos) {
@@ -13,6 +14,16 @@ function colorwheel(pos) {
 
 Array.prototype.insert = function (x, item) {
 	this.splice(x, 0, item);
+}
+
+var quantumData = {};	// Can be anything needed
+
+function verifyQuantumKeys(keys){	// Verify if quantum data has keys for mode
+	let output = true;
+	keys.foreach(key => {
+		if(!(key in quantumData)) output = false;
+	});
+	return output;
 }
 
 module.exports = {
@@ -111,6 +122,27 @@ module.exports = {
 		return {pixelData, offset};
 	},
 	demo: (pixelData, offset, ledCount) => {
+		// Qantum Data Preprocessor
+		if(!verifyQuantumKeys(['r', 'g', 'b'])) Object.assign(quantumData, colorBank.red);
+
+		// Light Control
+		if(offset < ledCount){			// Left movement
+			for(let i = 600; i > 0; i--){
+				if(offset >= i){
+					let distance = (600 - (offset - i)) / 600;
+					pixelData[i] = {r: quantumData.r * distance ,g: quantumData.g * distance ,b: quantumData.b * distance}
+				}  
+			}
+		} else if(offset < ledCount * 2){	// Right movement
+
+		} else if(offset < ledCount * 3){	// Explode
+
+		}
+
+		offset++;
+		if(offset > ledCount - 1){
+			offset = 0;
+		}
 		return {pixelData, offset};
 	},
 }
