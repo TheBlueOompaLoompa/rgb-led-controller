@@ -171,7 +171,7 @@ module.exports = {
 
 		return {pixelData, offset};
 	},
-	demo: (pixelData, offset, ledCount, loops) => {
+	demo: (pixelData, offset, ledCount) => {
 		return {pixelData, offset};
 	}
 }
