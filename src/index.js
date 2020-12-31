@@ -29,8 +29,6 @@ let updateLoop = setInterval(function() {
 
 		led.setAnimation((pixelData, offset) => {
 			switch(server.getSettings().on ? server.getSettings().mode : 0) {
-				case 6:
-					return patterns.marqueeSolids(pixelData, offset, led.getLedCount(), [...server.getSettings().color], server.getSettings().loops);
 				case 5:
 					return patterns.shootingStar(pixelData, offset, led.getLedCount(), [...server.getSettings().color]);
 				case 4:
