@@ -20,7 +20,7 @@ var quantumData = {};	// Can be anything needed
 
 function verifyQuantumKeys(keys){	// Verify if quantum data has keys for mode
 	let output = true;
-	keys.foreach(key => {
+	keys.forEach(key => {
 		if(!(key in quantumData)) output = false;
 	});
 	return output;
