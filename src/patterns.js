@@ -131,10 +131,10 @@ module.exports = {
 				if(offset >= i){
 					let distance = (600 - (offset - i)) / 600;
 					
-					pixelData[i] = {r: quantumData.r * distance ,g: quantumData.g * distance ,b: quantumData.b * distance};
+					pixelData[i] = led.rgb2Int({r: quantumData.r * distance ,g: quantumData.g * distance ,b: quantumData.b * distance});
 					console.log(pixelData[i]);
 				}else{
-					pixelData[i] = {r: 0, g: 0, b: 0}
+					pixelData[i] = led.rgb2Int({r: 0, g: 0, b: 0})
 				}
 			}
 		} else if(offset < ledCount * 2){	// Right movement
