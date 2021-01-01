@@ -16,28 +16,36 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true })); 
 
 app.post('/ctrl', (req, res) => {
-	console.log(req.body)
-    var options = {
-		uri: apiURI + 'ctrl',
-		method: 'POST',
-		json: req.body
-	};
-      
-	request(options, function (error, response, body) {
-		if (!error && response.statusCode == 200) {
-		}
-	});
-    res.status(200).sendFile(trustedRoot + '/index.html');
+    try {
+        var options = {
+            uri: apiURI + 'ctrl',
+            method: 'POST',
+            json: req.body
+        };
+          
+        request(options, function (error, response, body) {
+            if (!error && response.statusCode == 200) {
+            }
+        });
+        res.status(200).sendFile(trustedRoot + '/index.html');
+        console.log(req.body)
+    } catch (error) {
+        console.log(error);
+    }
 });
 
 app.get('/settings', (req, res) => {
-    request.get(apiURI + 'settings', { json: true }, (err, resp, body) => {
-        if (err) { 
-            res.send("err"); 
-        }
-
-        res.send(body);
-    });
+    try {
+        request.get(apiURI + 'settings', { json: true }, (err, resp, body) => {
+            if (err) { 
+                res.send("err"); 
+            }
+    
+            res.send(body);
+        }); 
+    } catch (error) {
+        console.log(error);
+    }
 });
 
 app.get('/*', (req, res) => {
