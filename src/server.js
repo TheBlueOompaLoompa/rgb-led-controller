@@ -38,6 +38,6 @@ module.exports = {
 		return settings;
 	},
 	exit: () => {
-		config.write(settings);
+		config.writeSync(settings);
 	},
 }

@@ -9,6 +9,9 @@ module.exports = {
     },
     write: (data) => {
         console.log('save config');
-        fs.writeFileSync(__dirname + '/../config.json', JSON.stringify(data));
+        fs.writeFile(__dirname + '/../config.json', JSON.stringify(data));
     },
+    writeSync: (data) => {
+        fs.writeFileSync(__dirname + '/../config.json', JSON.stringify(data));
+    }
 }
