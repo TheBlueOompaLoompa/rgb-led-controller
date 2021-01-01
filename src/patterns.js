@@ -130,6 +130,7 @@ module.exports = {
 			for(let i = 600; i > 0; i--){
 				if(offset >= i){
 					let distance = (600 - (offset - i)) / 600;
+					console.log(distance);
 					pixelData[i] = {r: quantumData.r * distance ,g: quantumData.g * distance ,b: quantumData.b * distance}
 				}else{
 					pixelData[i] = {r: 0, g: 0, b: 0}
