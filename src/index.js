@@ -30,7 +30,7 @@ let updateLoop = setInterval(function() {
 		led.setAnimation((pixelData, offset) => {
 			switch(server.getSettings().on ? server.getSettings().mode : 0) {
 				case 5:
-					return patterns.demo(pixelData, offset, led.getLedCount())
+					return patterns.demo(pixelData, offset, led.getLedCount());
 				case 4:
 					return patterns.inOutFading(pixelData, offset, led.getLedCount(), [...server.getSettings().color]);
 				case 3:
