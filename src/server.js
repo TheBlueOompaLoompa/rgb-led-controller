@@ -21,7 +21,8 @@ app.post('/ctrl', (req, res) => {
 
 	settings[setting] = req.body.value;
 
-  	res.send(`{"${setting}": "${settings[setting]}"}`);
+	res.send(`{"${setting}": "${settings[setting]}"}`);
+	config.write();  
 });
 
 app.get('/settings', (req, res) => {
