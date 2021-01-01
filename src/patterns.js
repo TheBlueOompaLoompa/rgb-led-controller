@@ -123,30 +123,50 @@ module.exports = {
 	},
 	demo: (pixelData, offset, ledCount) => {
 		// Qantum Data Preprocessor
-		if(!verifyQuantumKeys(['r', 'g', 'b'])) Object.assign(quantumData, colorBank.red);
-
-		// Light Control
-		if(offset < ledCount){			// Left movement
-			for(let i = 600; i > 0; i--){
-				if(offset >= i){
-					let distance = (600 - (offset - i)) / 600;
-					
-					pixelData[i] = led.rgb2Int({r: quantumData.r * distance ,g: quantumData.g * distance ,b: quantumData.b * distance});
-					console.log(pixelData[i]);
-				}else{
-					pixelData[i] = led.rgb2Int({r: 0, g: 0, b: 0})
-				}
-			}
-		} else if(offset < ledCount * 2){	// Right movement
-
-		} else if(offset < ledCount * 3){	// Explode
-
+		if(!verifyQuantumKeys(['r', 'g', 'b', 'col'])) quantumData = {r: 255, g: 0, b: 0, col: 0};
+			
+		let colors = [colorBank.red, colorBank.orange, colorBank.yellow, colorBank.green, colorBank.blue, colorBank.purple, colorBank.pink]
+		
+		let eyeSize = ledCount / 50;
+		
+		for(let i = 0; i < ledCount; i++){
+			pixelData[i] = led.rgb2Int(0, 0, 0);
 		}
-
+		
+		if(offset === ledCount / 2 || offset === ledCount || offset === ledCount * 1.5){
+			quantumData.col++
+			if(quantumData.col === colors.length) quantumData.col = 0;
+			quantumData.r = colors[quantumData.col].r;
+			quantumData.g = colors[quantumData.col].g;
+			quantumData.b = colors[quantumData.col].b;
+		}
+		
+		// Light Control
+		if(offset < ledCount / 2){
+			for(let i = 0; i < eyeSize * 2; i++){
+				let dist = 1 - (Math.abs(i - eyeSize) / eyeSize);
+				if(i + offset < ledCount / 2) pixelData[i + offset] = led.rgb2Int(quantumData.r * dist, quantumData.g * dist, quantumData.b * dist);
+			}
+		}else if(offset < ledCount){
+			for(let i = 0; i < eyeSize * 2; i++){
+				let dist = 1 - (Math.abs(i - eyeSize) / eyeSize);
+				if((ledCount + (ledCount / 2)) - (i + offset) > ledCount / 2) pixelData[(ledCount + (ledCount / 2)) - (i + offset)] = led.rgb2Int(quantumData.r * dist, quantumData.g * dist, quantumData.b * dist);
+			}
+		}else{
+			for(let i = 0; i < eyeSize * 2; i++){
+				let dist = 1 - (Math.abs(i - eyeSize) / eyeSize);
+				pixelData[i + (ledCount - offset) + (ledCount / 2)] = led.rgb2Int(quantumData.r * dist, quantumData.g * dist, quantumData.b * dist);
+			}
+			for(let i = 0; i < eyeSize * 2; i++){
+				let dist = 1 - (Math.abs(i - eyeSize) / eyeSize);
+				pixelData[i + (offset - (ledCount/2))] = led.rgb2Int(quantumData.r * dist, quantumData.g * dist, quantumData.b * dist);
+			}
+		}
+		
 		offset++;
-		if(offset > ledCount - 1){
+		if(offset > ledCount + (ledCount / 2)){
 			offset = 0;
 		}
 		return {pixelData, offset};
-	},
+	}
 }
