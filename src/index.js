@@ -13,7 +13,7 @@ process.on('SIGINT', function () {
 
 // Led stuv
 
-led.init({framerate: server.getSettings().speed, ledMapping: led.GRB});
+led.init({framerate: server.getSettings().framerate, ledMapping: led.GRB});
 
 let lastSettings = {};
 
@@ -23,7 +23,7 @@ let updateLoop = setInterval(function() {
 
 		console.log("Settings changed");
 
-		led.setSpeed(server.getSettings().speed);
+		led.setSpeed(server.getSettings().framerate);
 
 		led.setBrightness(server.getSettings().brightness);
 

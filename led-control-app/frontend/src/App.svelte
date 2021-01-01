@@ -36,7 +36,7 @@
 <br><br>
 <label for="speedtext">Speed: </label>
 <!--<input type="number" name="speedtext" id="speedtext" bind:value={settings.speed} on:change={ () => { updateSetting("speed", parseInt(settings.speed, 10));} }>-->
-<input type="range" name="speed" id="speed" bind:value={ settings.speed } on:change={ () => { updateSetting("speed", parseInt(settings.speed, 10));} }>
+<input type="range" name="speed" id="speed" bind:value={ settings.speed } on:change={ () => { updateSetting("framerate", parseInt(settings.speed, 10));} }>
 
 <label for="brightness">Brightness</label>
 <input type="range" name="brightness" id="brightness" bind:value={ settings.brightness } on:change={ () => { updateSetting("brightness", parseInt(settings.brightness, 10));} }>
