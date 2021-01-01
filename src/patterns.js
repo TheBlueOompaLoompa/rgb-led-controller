@@ -130,7 +130,7 @@ module.exports = {
 		let eyeSize = ledCount / 50;
 		
 		for(let i = 0; i < ledCount; i++){
-			pixelData[i] = led.rgb2Int(0, 0, 0);
+			pixelData[i] = led.rgb2Int(255, 255, 255);
 		}
 		
 		if(offset === ledCount / 2 || offset === ledCount || offset === ledCount * 1.5){
